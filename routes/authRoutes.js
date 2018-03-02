@@ -9,7 +9,13 @@ module.exports = app => {
   );
 
   // when google send back to callbackURL, pass to passport
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  app.get(
+    '/auth/google/callback',
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/surveys');
+    }
+  );
 
 
   app.get('/api/current_user', (req, res) => {
@@ -18,7 +24,7 @@ module.exports = app => {
 
   app.get('/api/logout', (req, res) => {
     req.logout();  // tell passport logout and kills cookies
-    res.send(req.user); // this should return empty
+    res.redirect('/');
   });
 
 };
