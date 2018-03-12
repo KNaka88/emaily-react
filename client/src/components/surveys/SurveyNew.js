@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { reduxForm } from 'redux-form';
 import SurveyForm from './SurveyForm';
 import SurveyFormReview from './SurveyFormReview';
 
@@ -28,4 +29,8 @@ class SurveyNew extends Component {
   }
 }
 
-export default SurveyNew;
+export default reduxForm({
+  form: 'surveyForm'
+  // destroyOnUnmount is not specified here.  that means true.
+  // therefore once user navigate to outside SurveyNew page, redux-form automatically dump form value
+})(SurveyNew);

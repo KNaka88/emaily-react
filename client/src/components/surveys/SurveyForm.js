@@ -6,7 +6,6 @@ import SurveyField from './SurveyField';
 import { Link } from 'react-router-dom';
 import validateEmails from '../../utils/validateEmails';
 import formFields from './formFields';
-
 class SurveyForm extends Component {
   renderFields() {
     return _.map(formFields, ({label, name}) => {
@@ -33,7 +32,7 @@ class SurveyForm extends Component {
 function validate(values) {
   const errors = {};
 
-  errors.email = validateEmails(values.email || '');
+  errors.recipients = validateEmails(values.recipients || '');
 
   _.each(formFields, ({ name }) => {
     if (!values[name]) {
